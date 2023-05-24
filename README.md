@@ -1,6 +1,6 @@
 # Paintbrush
 
-Simple and concise string colorization without overloading `String` methods or requiring verbose class/method invocation.
+Simple and concise string colorization for _Ruby_ without overloading `String` methods or requiring verbose class/method invocation.
 
 _Paintbrush_ has zero dependencies and does not pollute any namespaces or objects outside of the `#paintbrush` method wherever you include the `Paintbrush` module.
 
@@ -8,8 +8,9 @@ Nesting is supported, allowing you to use multiple colors within the same string
 
 ```ruby
 include Paintbrush
-puts paintbrush { white "You used #{green 'four'} #{blue "(#{cyan '4'})"} #{yellow 'colors'} today!" }
+puts paintbrush { purple "You used #{green 'four'} #{blue "(#{cyan '4'})"} #{yellow 'colors'} today!" }
 ```
+![example](doc/example.png "Example")
 
 ## Installation
 
@@ -71,3 +72,7 @@ This gem is an attempt to achieve all of the above. If it's not for you, take a 
 Make a pull request to fix a bug or add a feature.
 
 Run `make test` to verify all tests and lint checks have passed.
+
+## License
+
+_Paintbrush_ is released under the [MIT License](https://opensource.org/license/mit/).
