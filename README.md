@@ -1,31 +1,73 @@
 # Paintbrush
 
-TODO: Delete this and the text below, and describe your gem
+Simple and concise string colorization without overloading `String` methods or requiring verbose class/method invocation.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/paintbrush`. To experiment with that code, run `bin/console` for an interactive prompt.
+_Paintbrush_ has zero dependencies and does not pollute any namespaces or objects outside of the `#paintbrush` method wherever you include the `Paintbrush` module.
+
+Nesting is supported, allowing you to use multiple colors within the same string. The previous color is automatically restored.
+
+```ruby
+include Paintbrush
+puts paintbrush { white "You used #{green 'four'} #{blue "(#{cyan '4'})"} #{yellow 'colors'} today!" }
+```
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add _Paintbrush_ to your `Gemfile`:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem 'paintbrush'
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Build your bundle:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+bundle install
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Include the `Paintbrush` module anywhere and call `#paintbrush` to generate a colorized string. Nested strings are supported, allowing many complex combinations to be written in a single line.
+
+`#paintbrush` receives a block, within the block the following methods are available, each of which receives a string:
+
+* `#black`
+* `#red`
+* `#green`
+* `#yellow`
+* `#blue`
+* `#purple`
+* `#cyan`
+* `#white`
+* `#default`
+
+Use [string interpolation](https://docs.ruby-lang.org/en/3.2/syntax/literals_rdoc.html#label-String+Literals) to nest multiple colors:
+
+```ruby
+include Paintbrush
+puts paintbrush { green "some green text, #{yellow "some yellow text"} and some green again" }
+```
+
+## Alternatives
+
+* [Colorize](https://github.com/fazibear/colorize)
+* [Rainbow](https://github.com/sickill/rainbow)
+* [Paint](https://github.com/janlelis/paint)
+
+And [many others](https://www.ruby-toolbox.com/search?display=compact&order=score&q=string%20color&show_forks=false).
+
+## Motivation
+
+There are plenty of gems that solve this problem in various ways but I was unable to find one that achieves all of the following:
+
+* Support for nested strings.
+* No pollution of _Ruby_ `String` objects.
+* Concise syntax allowing strings to be generated in-line.
+
+This gem is an attempt to achieve all of the above. If it's not for you, take a look at one of the alternatives (see above).
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Make a pull request to fix a bug or add a feature.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/paintbrush.
+Run `make test` to verify all tests and lint checks have passed.
