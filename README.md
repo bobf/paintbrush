@@ -57,7 +57,7 @@ puts paintbrush { green "some green text, #{yellow "some yellow text"} and some 
 
 And [many others](https://www.ruby-toolbox.com/search?display=compact&order=score&q=string%20color&show_forks=false).
 
-## Motivation
+## Raison d'être
 
 There are plenty of gems that solve this problem in various ways but I was unable to find one that achieves all of the following:
 
