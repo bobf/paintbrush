@@ -1,0 +1,312 @@
+<html>
+  <head>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+    integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+    <style>
+
+      .code {
+        font-family: monospace;
+        max-height: 30rem;
+        overflow-y: auto;
+      }
+
+      h1.title {
+        display: inline;
+      }
+
+      .header .separator {
+        display: inline-block;
+        height: 2.5rem;
+      }
+
+      .version {
+        color: #bbb;
+        font-size: 2rem;
+      }
+
+      .ansi-html {
+        display: inline-block;
+        background-color: #2e2e2e;
+        border: 5px solid #2e2e2e;
+        border-radius: 10px;
+      }
+
+      .ansi-html .ansi-color-0 { color: #555555; }
+      .ansi-html .ansi-color-1 { color: #ff0000; }
+      .ansi-html .ansi-color-2 { color: #47ff47; }
+      .ansi-html .ansi-color-3 { color: #e9e947; }
+      .ansi-html .ansi-color-4 { color: #49a0dd; }
+      .ansi-html .ansi-color-5 { color: #8d7eeb; }
+      .ansi-html .ansi-color-6 { color: #2eecff; }
+      .ansi-html .ansi-color-7 { color: #ffffff; }
+      .ansi-html .ansi-color-9 { color: #606060; }
+      .ansi-html .ansi-color-reset { color: #dddddd; }
+
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .kv {
+  color: #cf222e;
+}
+.highlight .gr {
+  color: #f6f8fa;
+}
+.highlight .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+.highlight .nb {
+  color: #953800;
+}
+.highlight .nc {
+  color: #953800;
+}
+.highlight .no {
+  color: #953800;
+}
+.highlight .nn {
+  color: #953800;
+}
+.highlight .sr {
+  color: #116329;
+}
+.highlight .na {
+  color: #116329;
+}
+.highlight .nt {
+  color: #116329;
+}
+.highlight .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+.highlight .kc {
+  color: #0550ae;
+}
+.highlight .l, .highlight .ld, .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #0550ae;
+}
+.highlight .sb {
+  color: #0550ae;
+}
+.highlight .bp {
+  color: #0550ae;
+}
+.highlight .ne {
+  color: #0550ae;
+}
+.highlight .nl {
+  color: #0550ae;
+}
+.highlight .py {
+  color: #0550ae;
+}
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .vm {
+  color: #0550ae;
+}
+.highlight .o, .highlight .ow {
+  color: #0550ae;
+}
+.highlight .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+.highlight .s, .highlight .sa, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .sx, .highlight .s1, .highlight .ss {
+  color: #0a3069;
+}
+.highlight .nd {
+  color: #8250df;
+}
+.highlight .nf, .highlight .fm {
+  color: #8250df;
+}
+.highlight .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cp, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #6e7781;
+}
+.highlight .gl {
+  color: #6e7781;
+}
+.highlight .gt {
+  color: #6e7781;
+}
+.highlight .ni {
+  color: #24292f;
+}
+.highlight .si {
+  color: #24292f;
+}
+.highlight .ge {
+  color: #24292f;
+  font-style: italic;
+}
+.highlight .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container m-3 p-3">
+      <div class="header p-3 m-3 w-90 text-end">
+  <h1 class="title">paintbrush</h1>
+  <span class="separator border-end pb-2 ms-2 me-2"></span>
+  <span class="version">0.1.0</span>
+</div>
+
+<hr/>
+
+
+      <div class="row">
+        <div class="col-auto page-tree fs-6 mt-1 ms-3 me-3">
+          
+            <li>
+          
+            <a href='/home/bob/dev/paintbrush/rspec-documentation/bundle/introduction.html'>Introduction</a>
+          
+            </li>
+          
+            <ul>
+          
+            </ul>
+          
+        </div>
+
+        <div class="col">
+          <h1 id="paintbrush">Paintbrush</h1>
+
+<p>Simple and concise string colorization for <em>Ruby</em> without overloading <code>String</code> methods or requiring verbose class/method invocation.</p>
+
+<p><em>Paintbrush</em> has zero dependencies and does not pollute any namespaces or objects outside of the <code>#paintbrush</code> method wherever you include the <code>Paintbrush</code> module.</p>
+
+<p>Nesting is supported, allowing you to use multiple colors within the same string. The previous color is automatically restored.</p>
+
+<div location="9"><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-15cae418-087d-45aa-b936-ea2c34033c01-side-by-side"> View Side-by-side </button>   <div class="modal fade" id="modal-15cae418-087d-45aa-b936-ea2c34033c01-side-by-side" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-15cae418-087d-45aa-b936-ea2c34033c01-side-by-side-label">Side-by-side view</h5>
+ <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container p-3">
+            <div class="row border">
+              <div class="col border">
+                <div class="p-3 mb-5 code highlight">
+<span class="nb">require</span> <span class="s1">'paintbrush'</span><br /><br /><span class="kp">extend</span> <span class="no">Paintbrush</span><br /><br /><span class="n">output</span> <span class="o">=</span> <span class="n">paintbrush</span> <span class="p">{</span> <span class="n">purple</span> <span class="s2">"You used </span><span class="si">#{</span><span class="n">green</span> <span class="s1">'four'</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">blue</span> <span class="s2">"(</span><span class="si">#{</span><span class="n">cyan</span> <span class="s1">'4'</span><span class="si">}</span><span class="s2">)"</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">yellow</span> <span class="s1">'colors'</span><span class="si">}</span><span class="s2"> today!"</span> <span class="p">}</span><br /><span class="n">it_documents</span> <span class="n">output</span> <span class="k">do</span><br />  <span class="n">expect</span><span class="p">(</span><span class="n">output</span><span class="p">).</span><span class="nf">to</span> <span class="n">eql</span> <span class="s2">"</span><span class="se">\e</span><span class="s2">[35mYou used </span><span class="se">\e</span><span class="s2">[32mfour</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[35m "</span> <span class="p">\</span><br />                        <span class="s2">"</span><span class="se">\e</span><span class="s2">[34m(</span><span class="se">\e</span><span class="s2">[36m4</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[34m)</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[35m "</span> <span class="p">\</span><br />                        <span class="s2">"</span><span class="se">\e</span><span class="s2">[33mcolors</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[35m today!</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[0m"</span><br /><span class="k">end</span><br />
+                </div>
+              </div>
+              <div class="col border">
+                <div class="p-3 mb-5 code highlight">
+                  <div class="ansi-html border m-1 p-4">
+<span></span><span class="ansi-color-5">You used </span><span class="ansi-color-2">four</span><span class="ansi-color-reset"></span><span class="ansi-color-5"> </span><span class="ansi-color-4">(</span><span class="ansi-color-6">4</span><span class="ansi-color-reset"></span><span class="ansi-color-4">)</span><span class="ansi-color-reset"></span><span class="ansi-color-5"> </span><span class="ansi-color-3">colors</span><span class="ansi-color-reset"></span><span class="ansi-color-5"> today!</span><span class="ansi-color-reset"></span><span class="ansi-color-reset"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="nav nav-tabs" id="html-tabs-15cae418-087d-45aa-b936-ea2c34033c01" role="tablist">
+    <li class="nav-item" role="presentation"><button class="nav-link active" id="code-source-15cae418-087d-45aa-b936-ea2c34033c01-tab" data-bs-toggle="tab" data-bs-target="#code-source-15cae418-087d-45aa-b936-ea2c34033c01" type="button" role="tab" aria-controls="code-source" aria-selected="true">Code</button></li>
+    <li class="nav-item" role="presentation"><button class="nav-link" id="rendered-15cae418-087d-45aa-b936-ea2c34033c01-tab" data-bs-toggle="tab" data-bs-target="#rendered-15cae418-087d-45aa-b936-ea2c34033c01" type="button" role="tab" aria-controls="rendered" aria-selected="false">Output</button></li>
+  </ul>
+  <div class="tab-content" id="html-tab-content-15cae418-087d-45aa-b936-ea2c34033c01">
+    <div class="tab-pane fade show active" id="code-source-15cae418-087d-45aa-b936-ea2c34033c01" role="tabpanel" aria-labelledby="code-source-15cae418-087d-45aa-b936-ea2c34033c01-tab">
+      <div class="p-3 mb-5 code highlight">
+<span class="nb">require</span> <span class="s1">'paintbrush'</span><br /><br /><span class="kp">extend</span> <span class="no">Paintbrush</span><br /><br /><span class="n">output</span> <span class="o">=</span> <span class="n">paintbrush</span> <span class="p">{</span> <span class="n">purple</span> <span class="s2">"You used </span><span class="si">#{</span><span class="n">green</span> <span class="s1">'four'</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">blue</span> <span class="s2">"(</span><span class="si">#{</span><span class="n">cyan</span> <span class="s1">'4'</span><span class="si">}</span><span class="s2">)"</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">yellow</span> <span class="s1">'colors'</span><span class="si">}</span><span class="s2"> today!"</span> <span class="p">}</span><br /><span class="n">it_documents</span> <span class="n">output</span> <span class="k">do</span><br />  <span class="n">expect</span><span class="p">(</span><span class="n">output</span><span class="p">).</span><span class="nf">to</span> <span class="n">eql</span> <span class="s2">"</span><span class="se">\e</span><span class="s2">[35mYou used </span><span class="se">\e</span><span class="s2">[32mfour</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[35m "</span> <span class="p">\</span><br />                        <span class="s2">"</span><span class="se">\e</span><span class="s2">[34m(</span><span class="se">\e</span><span class="s2">[36m4</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[34m)</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[35m "</span> <span class="p">\</span><br />                        <span class="s2">"</span><span class="se">\e</span><span class="s2">[33mcolors</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[35m today!</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[0m"</span><br /><span class="k">end</span><br />
+      </div>
+    </div>
+    <div class="tab-pane fade" id="rendered-15cae418-087d-45aa-b936-ea2c34033c01" role="tabpanel" aria-labelledby="rendered-15cae418-087d-45aa-b936-ea2c34033c01-tab">
+      <div class="p-3 mb-5 code highlight">
+        <div class="ansi-html border m-1 p-4">
+<span></span><span class="ansi-color-5">You used </span><span class="ansi-color-2">four</span><span class="ansi-color-reset"></span><span class="ansi-color-5"> </span><span class="ansi-color-4">(</span><span class="ansi-color-6">4</span><span class="ansi-color-reset"></span><span class="ansi-color-4">)</span><span class="ansi-color-reset"></span><span class="ansi-color-5"> </span><span class="ansi-color-3">colors</span><span class="ansi-color-reset"></span><span class="ansi-color-5"> today!</span><span class="ansi-color-reset"></span><span class="ansi-color-reset"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div location="22"><button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#modal-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-side-by-side"> View Side-by-side </button>   <div class="modal fade" id="modal-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-side-by-side" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-side-by-side-label">Side-by-side view</h5>
+ <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container p-3">
+            <div class="row border">
+              <div class="col border">
+                <div class="p-3 mb-5 code highlight">
+<span class="nb">require</span> <span class="s1">'paintbrush'</span><br /><br /><span class="kp">extend</span> <span class="no">Paintbrush</span><br /><br /><span class="n">output</span> <span class="o">=</span> <span class="n">paintbrush</span> <span class="k">do</span><br />  <span class="s2">"</span><span class="si">#{</span><span class="n">blue</span> <span class="s1">'foo'</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">green</span> <span class="s2">"bar </span><span class="si">#{</span><span class="n">cyan</span> <span class="sx">%w[foo bar baz]</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2"> with </span><span class="si">#{</span><span class="n">cyan</span> <span class="s1">'qux'</span><span class="si">}</span><span class="s2"> and quux"</span><span class="si">}</span><span class="s2"> and corge"</span><br /><span class="k">end</span><br /><br /><span class="n">it_documents</span> <span class="n">output</span> <span class="k">do</span><br />  <span class="n">expect</span><span class="p">(</span><span class="n">output</span><span class="p">).</span><span class="nf">to</span> <span class="n">eql</span> <span class="s2">"</span><span class="se">\e</span><span class="s2">[34mfoo</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[0m </span><span class="se">\e</span><span class="s2">[32mbar </span><span class="se">\e</span><span class="s2">[36mfoo, bar, baz"</span> <span class="p">\</span><br />                        <span class="s2">"</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[32m with </span><span class="se">\e</span><span class="s2">[36mqux</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[32m "</span><span class="p">\</span><br />                        <span class="s2">"and quux</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[0m and corge"</span><br /><span class="k">end</span><br />
+                </div>
+              </div>
+              <div class="col border">
+                <div class="p-3 mb-5 code highlight">
+                  <div class="ansi-html border m-1 p-4">
+<span></span><span class="ansi-color-4">foo</span><span class="ansi-color-reset"></span><span class="ansi-color-reset"> </span><span class="ansi-color-2">bar </span><span class="ansi-color-6">foo, bar, baz</span><span class="ansi-color-reset"></span><span class="ansi-color-2"> with </span><span class="ansi-color-6">qux</span><span class="ansi-color-reset"></span><span class="ansi-color-2"> and quux</span><span class="ansi-color-reset"></span><span class="ansi-color-reset"> and corge</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="nav nav-tabs" id="html-tabs-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0" role="tablist">
+    <li class="nav-item" role="presentation"><button class="nav-link active" id="code-source-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-tab" data-bs-toggle="tab" data-bs-target="#code-source-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0" type="button" role="tab" aria-controls="code-source" aria-selected="true">Code</button></li>
+    <li class="nav-item" role="presentation"><button class="nav-link" id="rendered-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-tab" data-bs-toggle="tab" data-bs-target="#rendered-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0" type="button" role="tab" aria-controls="rendered" aria-selected="false">Output</button></li>
+  </ul>
+  <div class="tab-content" id="html-tab-content-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0">
+    <div class="tab-pane fade show active" id="code-source-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0" role="tabpanel" aria-labelledby="code-source-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-tab">
+      <div class="p-3 mb-5 code highlight">
+<span class="nb">require</span> <span class="s1">'paintbrush'</span><br /><br /><span class="kp">extend</span> <span class="no">Paintbrush</span><br /><br /><span class="n">output</span> <span class="o">=</span> <span class="n">paintbrush</span> <span class="k">do</span><br />  <span class="s2">"</span><span class="si">#{</span><span class="n">blue</span> <span class="s1">'foo'</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">green</span> <span class="s2">"bar </span><span class="si">#{</span><span class="n">cyan</span> <span class="sx">%w[foo bar baz]</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2"> with </span><span class="si">#{</span><span class="n">cyan</span> <span class="s1">'qux'</span><span class="si">}</span><span class="s2"> and quux"</span><span class="si">}</span><span class="s2"> and corge"</span><br /><span class="k">end</span><br /><br /><span class="n">it_documents</span> <span class="n">output</span> <span class="k">do</span><br />  <span class="n">expect</span><span class="p">(</span><span class="n">output</span><span class="p">).</span><span class="nf">to</span> <span class="n">eql</span> <span class="s2">"</span><span class="se">\e</span><span class="s2">[34mfoo</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[0m </span><span class="se">\e</span><span class="s2">[32mbar </span><span class="se">\e</span><span class="s2">[36mfoo, bar, baz"</span> <span class="p">\</span><br />                        <span class="s2">"</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[32m with </span><span class="se">\e</span><span class="s2">[36mqux</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[32m "</span><span class="p">\</span><br />                        <span class="s2">"and quux</span><span class="se">\e</span><span class="s2">[0m</span><span class="se">\e</span><span class="s2">[0m and corge"</span><br /><span class="k">end</span><br />
+      </div>
+    </div>
+    <div class="tab-pane fade" id="rendered-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0" role="tabpanel" aria-labelledby="rendered-c3e2bbb8-9a13-4400-93a1-0e6c9847cba0-tab">
+      <div class="p-3 mb-5 code highlight">
+        <div class="ansi-html border m-1 p-4">
+<span></span><span class="ansi-color-4">foo</span><span class="ansi-color-reset"></span><span class="ansi-color-reset"> </span><span class="ansi-color-2">bar </span><span class="ansi-color-6">foo, bar, baz</span><span class="ansi-color-reset"></span><span class="ansi-color-2"> with </span><span class="ansi-color-6">qux</span><span class="ansi-color-reset"></span><span class="ansi-color-2"> and quux</span><span class="ansi-color-reset"></span><span class="ansi-color-reset"> and corge</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+      <hr/>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+            integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+  </body>
+</html>

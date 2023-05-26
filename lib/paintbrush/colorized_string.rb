@@ -7,7 +7,7 @@ module Paintbrush
   class ColorizedString
     def initialize(&block)
       @block = block
-      @codes = []
+      @stack = []
     end
 
     # Returns a colorized string by injecting escape codes into the various calls to each color
@@ -19,30 +19,43 @@ module Paintbrush
 
     private
 
-    attr_reader :block, :codes
+    attr_reader :block, :stack
 
-    def colorized_string
-      codes.each.with_index.reduce(escaped_output) do |string, (code, index)|
-        restored_color_code = index + 1 == codes.size ? '0' : codes[index + 1]
-        subbed_string(string, index, code, restored_color_code)
+    def colorized_string(string: escaped_output, tree: element_tree)
+      tree[:children].reduce(string) do |output, child|
+        subbed = subbed_string(output, child[:node], tree[:node])
+        next subbed if child[:children].empty?
+
+        colorized_string(string: subbed, tree: child)
       end
     end
 
-    def subbed_string(string, index, code, restored_color_code)
+    def bounded_color_elements
+      @bounded_color_elements ||= stack.map do |color_element|
+        BoundedColorElement.new(color_element: color_element, escaped_output: escaped_output)
+      end
+    end
+
+    def element_tree
+      @element_tree ||= ElementTree.new(bounded_color_elements: bounded_color_elements).tree
+    end
+
+    def subbed_string(string, color_element, parent_color_element)
+      restored_color_code = parent_color_element.nil? ? '0' : parent_color_element.code
       string
-        .sub("#{Colors::ESCAPE_START_OPEN}#{index}#{Colors::ESCAPE_START_CLOSE}", "\e[#{code}m")
-        .sub("#{Colors::ESCAPE_END_OPEN}#{index}#{Colors::ESCAPE_END_CLOSE}", "\e[0m\e[#{restored_color_code}m")
+        .sub(Escapes.open(color_element.index).to_s, "\e[#{color_element.code}m")
+        .sub(Escapes.close(color_element.index).to_s, "\e[0m\e[#{restored_color_code}m")
     end
 
     def escaped_output
-      context.instance_eval(&block)
+      @escaped_output ||= context.instance_eval(&block)
     end
 
     def context
       eval('self', block.binding, __FILE__, __LINE__).dup.tap do |context|
         context.send(:include, Paintbrush::Colors) if context.respond_to?(:include)
         context.send(:extend, Paintbrush::Colors) if context.respond_to?(:extend)
-        context.send(:instance_variable_set, :@__codes, codes)
+        context.send(:instance_variable_set, :@__stack, stack)
       end
     end
   end

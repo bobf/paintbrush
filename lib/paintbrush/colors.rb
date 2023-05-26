@@ -6,11 +6,6 @@ module Paintbrush
   # string to be reconstituted afterwards with nested strings restoring the previous color once
   # they have terminated.
   module Colors
-    ESCAPE_START_OPEN = "\e[3;15;17]OPEN:"
-    ESCAPE_START_CLOSE = "\e[3;15;17]CLOSE:"
-    ESCAPE_END_OPEN = "\e[17;15;3]OPEN:"
-    ESCAPE_END_CLOSE = "\e[17;15;3]CLOSE:"
-
     COLOR_CODES = {
       black: '30',
       red: '31',
@@ -25,10 +20,7 @@ module Paintbrush
 
     COLOR_CODES.each do |name, code|
       define_method name do |string|
-        @__codes.push(code)
-        "#{ESCAPE_START_OPEN}#{@__codes.size - 1}#{ESCAPE_START_CLOSE}" \
-          "#{string}" \
-          "#{ESCAPE_END_OPEN}#{@__codes.size - 1}#{ESCAPE_END_CLOSE}"
+        ColorElement.new(stack: @__stack, code: code, string: string).to_s
       end
     end
   end

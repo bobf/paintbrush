@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'paintbrush/version'
+require_relative 'paintbrush/escapes'
 require_relative 'paintbrush/colors'
 require_relative 'paintbrush/colorized_string'
+require_relative 'paintbrush/color_element'
+require_relative 'paintbrush/bounded_color_element'
+require_relative 'paintbrush/element_tree'
 
 # Colorizes a string, provides `#paintbrush`. When included/extended in a class, call
 # `#paintbrush` and pass a block to use the provided dynamically defined methods, e.g.:
@@ -16,9 +20,11 @@ require_relative 'paintbrush/colorized_string'
 #   end
 # ```
 module Paintbrush
-  class Error < StandardError; end
+  def self.paintbrush(&block)
+    ColorizedString.new(&block).colorized
+  end
 
   def paintbrush(&block)
-    ColorizedString.new(&block).colorized
+    Paintbrush.paintbrush(&block)
   end
 end
