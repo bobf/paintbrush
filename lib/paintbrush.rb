@@ -6,6 +6,7 @@ require_relative 'paintbrush/escapes'
 require_relative 'paintbrush/colors'
 require_relative 'paintbrush/colorized_string'
 require_relative 'paintbrush/color_element'
+require_relative 'paintbrush/hex_color_code'
 require_relative 'paintbrush/bounded_color_element'
 require_relative 'paintbrush/element_tree'
 

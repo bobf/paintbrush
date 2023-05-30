@@ -28,6 +28,16 @@ RSpec.describe Paintbrush do
                           "\e[36mqux\e[0m\e[32m and quux\e[0m\e[0m and corge"
   end
 
+  it 'renders hex colors' do
+    output = paintbrush { hex_ff00ff 'hello' }
+    expect(output).to eql "\e[38;2;255;0;255mhello\e[0m\e[0m"
+  end
+
+  it 'renders short-hand hex colors' do
+    output = paintbrush { hex_f0f 'hello' }
+    expect(output).to eql "\e[38;2;255;0;255mhello\e[0m\e[0m"
+  end
+
   context 'with configuration `colorize` set to false' do
     before { Paintbrush::Configuration.colorize = false }
 

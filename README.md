@@ -42,11 +42,14 @@ Include the `Paintbrush` module anywhere and call `#paintbrush` to generate a co
 * `#white`
 * `#default`
 
+Hex colors are also available as `#hex_ff00ff` and `#hex_f0f`, allowing a much wider range of colors.
+
 Use [string interpolation](https://docs.ruby-lang.org/en/3.2/syntax/literals_rdoc.html#label-String+Literals) to nest multiple colors:
 
 ```ruby
 include Paintbrush
 puts paintbrush { green "some green text, #{yellow "some yellow text"} and some green again" }
+puts paintbrush { hex_ff00ff "some magenta #{hex_ffff00 "and some yellow"} and magenta again" }
 ```
 
 ## Alternatives

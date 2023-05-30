@@ -27,5 +27,24 @@ module Paintbrush
         end
       end
     end
+
+    def method_missing(method_name, *args)
+      return super unless method_name.match?(/hex_[a-fA-F0-9]{3,6}/)
+      return string unless Configuration.colorize?
+
+      return unless Configuration.colorize?
+
+      ColorElement.new(
+        stack: @__stack,
+        code: HexColorCode.new(hex_code: method_name).escape_sequence,
+        string: args.first
+      ).to_s
+    end
+
+    def respond_to_missing?(*)
+      return super unless method_name.match?(/hex_[a-fA-F0-9]{3,6}/)
+
+      true
+    end
   end
 end
