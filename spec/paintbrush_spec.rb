@@ -3,6 +3,8 @@
 RSpec.describe Paintbrush do
   include described_class
 
+  before { Paintbrush::Configuration.reset }
+
   it 'has a version number' do
     expect(Paintbrush::VERSION).not_to be_nil
   end
@@ -24,5 +26,38 @@ RSpec.describe Paintbrush do
     end
     expect(output).to eql "\e[34mfoo\e[0m\e[0m \e[32mbar \e[36mfoo, bar, baz\e[0m\e[32m with " \
                           "\e[36mqux\e[0m\e[32m and quux\e[0m\e[0m and corge"
+  end
+
+  context 'with configuration `colorize` set to false' do
+    before { Paintbrush::Configuration.colorize = false }
+
+    it 'does not output colorized strings' do
+      output = paintbrush { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
+      expect(output).to eql 'a non-colorized string'
+    end
+  end
+
+  context 'with `colorize: false` passed to `paintbrush`' do
+    it 'does not output colorized strings' do
+      output = paintbrush(colorize: false) { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
+      expect(output).to eql 'a non-colorized string'
+    end
+  end
+
+  context 'with `colorize: true` enclosed in `with_configuration(colorize: false)`' do
+    it 'does not output colorized strings' do
+      Paintbrush::Configuration.with_configuration(colorize: false) do
+        output = paintbrush(colorize: true) { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
+        expect(output).to eql 'a non-colorized string'
+      end
+    end
+  end
+
+  context 'with `colorize: true` and global configuration `colorize: false`' do
+    it 'does not output colorized strings' do
+      Paintbrush::Configuration.colorize = false
+      output = paintbrush(colorize: true) { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
+      expect(output).to eql 'a non-colorized string'
+    end
   end
 end

@@ -5,7 +5,8 @@ module Paintbrush
   # sequences to store references to start and end of each coloring method to allow nested
   # colorizing with string interpolation within each individual call to `paintbrush`.
   class ColorizedString
-    def initialize(&block)
+    def initialize(colorize:, &block)
+      @colorize = colorize
       @block = block
       @stack = []
     end
@@ -14,7 +15,9 @@ module Paintbrush
     # method in the provided block, rebuilds the string and returns the value with regular ANSI
     # color codes ready to be output to a console.
     def colorized
-      colorized_string
+      Configuration.with_configuration(colorize: @colorize) do
+        colorized_string
+      end
     end
 
     private

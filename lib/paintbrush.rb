@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'paintbrush/version'
+require_relative 'paintbrush/configuration'
 require_relative 'paintbrush/escapes'
 require_relative 'paintbrush/colors'
 require_relative 'paintbrush/colorized_string'
@@ -20,11 +21,11 @@ require_relative 'paintbrush/element_tree'
 #   end
 # ```
 module Paintbrush
-  def self.paintbrush(&block)
-    ColorizedString.new(&block).colorized
+  def self.paintbrush(colorize: nil, &block)
+    ColorizedString.new(colorize: colorize, &block).colorized
   end
 
-  def paintbrush(&block)
-    Paintbrush.paintbrush(&block)
+  def paintbrush(colorize: nil, &block)
+    Paintbrush.paintbrush(colorize: colorize, &block)
   end
 end

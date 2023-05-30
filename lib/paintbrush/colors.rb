@@ -20,7 +20,11 @@ module Paintbrush
 
     COLOR_CODES.each do |name, code|
       define_method name do |string|
-        ColorElement.new(stack: @__stack, code: code, string: string).to_s
+        if Configuration.colorize?
+          ColorElement.new(stack: @__stack, code: code, string: string).to_s
+        else
+          string
+        end
       end
     end
   end

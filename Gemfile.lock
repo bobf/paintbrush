@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    paintbrush (0.1.1)
+    paintbrush (0.1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -10,23 +10,38 @@ GEM
     concurrent-ruby (1.2.2)
     devpack (0.4.1)
     diff-lcs (1.5.0)
+    htmlbeautifier (1.4.2)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
+    kramdown (2.4.0)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     paint (2.3.0)
     parallel (1.23.0)
     parser (3.2.2.1)
       ast (~> 2.4.1)
     rainbow (3.1.1)
     rake (13.0.6)
+    redcarpet (3.6.0)
     regexp_parser (2.8.0)
     rexml (3.2.5)
+    rouge (4.1.1)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
       rspec-mocks (~> 3.12.0)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
+    rspec-documentation (0.0.2)
+      htmlbeautifier (~> 1.4)
+      kramdown (~> 2.4)
+      kramdown-parser-gfm (~> 1.1)
+      paintbrush (~> 0.1.1)
+      redcarpet (~> 3.6)
+      rouge (~> 4.1)
+      rspec (~> 3.12)
     rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
@@ -70,6 +85,7 @@ DEPENDENCIES
   paintbrush!
   rake (~> 13.0)
   rspec (~> 3.0)
+  rspec-documentation (~> 0.0.2)
   rubocop (~> 1.51)
   rubocop-rake (~> 0.6.0)
   rubocop-rspec (~> 2.22)
