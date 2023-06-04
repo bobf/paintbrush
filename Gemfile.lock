@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    paintbrush (0.1.2)
+    paintbrush (0.1.3)
 
 GEM
   remote: https://rubygems.org/
