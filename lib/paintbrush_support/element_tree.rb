@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # A tree of BoundedColorElement objects. Used to build a full tree of colorized substrings in
   # order to allow discovery of parent substrings and use their color code to restore to when the
   # substring is terminated. Allows deeply-nested colorized strings.

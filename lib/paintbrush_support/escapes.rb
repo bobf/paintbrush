@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # Provides an authority on escape code generation. Provides `.close` and `.open`, both of which
   # receive an index (i.e. the current size of the stack). Used for escape code insertion and comparison.
   module Escapes

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # Core string colorization, provides various methods for colorizing a string, uses escape
   # sequences to store references to start and end of each coloring method to allow nested
   # colorizing with string interpolation within each individual call to `paintbrush`.
@@ -56,8 +56,8 @@ module Paintbrush
 
     def context
       eval('self', block.binding, __FILE__, __LINE__).dup.tap do |context|
-        context.send(:include, Paintbrush::Colors) if context.respond_to?(:include)
-        context.send(:extend, Paintbrush::Colors) if context.respond_to?(:extend)
+        context.send(:include, PaintbrushSupport::Colors) if context.respond_to?(:include)
+        context.send(:extend, PaintbrushSupport::Colors) if context.respond_to?(:extend)
         context.send(:instance_variable_set, :@__stack, stack)
       end
     end

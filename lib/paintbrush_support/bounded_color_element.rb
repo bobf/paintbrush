@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # Wraps a Paintbrush::ColorElement instance and maps its start and end boundaries within a
   # compiled escaped string by matching specific unique (indexed) escape codes. Provides
   # `#surround?` for detecting if another element exists within the current element's boundaries.

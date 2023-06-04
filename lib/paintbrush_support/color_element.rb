@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # Provides a substring enclosed in unique escape codes for later colorization when the full
   # string has been created and all interpolation is completed. Adds itself to a provided stack
   # of ColorElement objects on initialization.

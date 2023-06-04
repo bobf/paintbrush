@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # Translates a string in format `hex_ff00ff` or `hex_f0f` into an RGB escape code sequence.
   # Allows calling e.g.:
   #

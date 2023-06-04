@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'lib/paintbrush/version'
+require_relative 'lib/paintbrush_support/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'paintbrush'
-  spec.version = Paintbrush::VERSION
+  spec.version = PaintbrushSupport::VERSION
   spec.authors = ['Bob Farrell']
   spec.email = ['git@bob.frl']
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Paintbrush
+module PaintbrushSupport
   # Provides a configuration interface for Paintbrush features, allows disabling colorization.
   #
   # Usage:

@@ -3,10 +3,10 @@
 RSpec.describe Paintbrush do
   include described_class
 
-  before { Paintbrush::Configuration.reset }
+  before { PaintbrushSupport::Configuration.reset }
 
   it 'has a version number' do
-    expect(Paintbrush::VERSION).not_to be_nil
+    expect(PaintbrushSupport::VERSION).not_to be_nil
   end
 
   it 'renders a colorized string' do
@@ -38,8 +38,13 @@ RSpec.describe Paintbrush do
     expect(output).to eql "\e[38;2;255;0;255mhello\e[0m\e[0m"
   end
 
+  it 'provides usage as gem module class method' do
+    output = described_class.paintbrush { blue 'hello' }
+    expect(output).to eql "\e[34mhello\e[0m\e[0m"
+  end
+
   context 'with configuration `colorize` set to false' do
-    before { Paintbrush::Configuration.colorize = false }
+    before { described_class.configure { |config| config.colorize = false } }
 
     it 'does not output colorized strings' do
       output = paintbrush { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
@@ -56,7 +61,7 @@ RSpec.describe Paintbrush do
 
   context 'with `colorize: true` enclosed in `with_configuration(colorize: false)`' do
     it 'does not output colorized strings' do
-      Paintbrush::Configuration.with_configuration(colorize: false) do
+      described_class.with_configuration(colorize: false) do
         output = paintbrush(colorize: true) { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
         expect(output).to eql 'a non-colorized string'
       end
@@ -65,7 +70,7 @@ RSpec.describe Paintbrush do
 
   context 'with `colorize: true` and global configuration `colorize: false`' do
     it 'does not output colorized strings' do
-      Paintbrush::Configuration.colorize = false
+      described_class.configure { |config| config.colorize = false }
       output = paintbrush(colorize: true) { cyan "a non-#{blue "colorized #{green 'str'}"}ing" }
       expect(output).to eql 'a non-colorized string'
     end
