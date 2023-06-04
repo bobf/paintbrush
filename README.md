@@ -26,55 +26,9 @@ Build your bundle:
 bundle install
 ```
 
-## Usage
+## Documentation
 
-Include the `Paintbrush` module anywhere and call `#paintbrush` to generate a colorized string. Nested strings are supported, allowing many complex combinations to be written in a single line.
-
-`#paintbrush` receives a block, within the block the following methods are available, each of which receives a string:
-
-* `#black`
-* `#red`
-* `#green`
-* `#yellow`
-* `#blue`
-* `#purple`
-* `#cyan`
-* `#white`
-* `#default`
-
-Hex colors are also available as `#hex_ff00ff` and `#hex_f0f`, allowing a much wider range of colors.
-
-Use [string interpolation](https://docs.ruby-lang.org/en/3.2/syntax/literals_rdoc.html#label-String+Literals) to nest multiple colors:
-
-```ruby
-include Paintbrush
-puts paintbrush { green "some green text, #{yellow "some yellow text"} and some green again" }
-puts paintbrush { hex_ff00ff "some magenta #{hex_ffff00 "and some yellow"} and magenta again" }
-```
-
-## Alternatives
-
-* [Colorize](https://github.com/fazibear/colorize)
-* [Rainbow](https://github.com/sickill/rainbow)
-* [Paint](https://github.com/janlelis/paint)
-
-And [many others](https://www.ruby-toolbox.com/search?display=compact&order=score&q=string%20color&show_forks=false).
-
-## Motivation
-
-There are plenty of gems that solve this problem in various ways but I was unable to find one that achieves all of the following:
-
-* Support for nested strings.
-* No pollution of _Ruby_ `String` objects.
-* Concise syntax allowing strings to be generated in-line.
-
-This gem is an attempt to achieve all of the above. If it's not for you, take a look at one of the alternatives (see above).
-
-## Development
-
-Make a pull request to fix a bug or add a feature.
-
-Run `make test` to verify all tests and lint checks have passed.
+See the [Official Documentation](https://docs.bob.frl/paintbrush) for examples and configuration options.
 
 ## License
 
