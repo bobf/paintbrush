@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = PaintbrushSupport::VERSION
   spec.authors = ['Bob Farrell']
   spec.email = ['git@bob.frl']
+  spec.licenses = ['MIT']
 
   spec.summary = 'Hassle-free text coloring for console applications.'
   spec.description = 'Provides a set of encapsulated methods for nested colorization of strings.'
