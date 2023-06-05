@@ -1,6 +1,6 @@
 # Nested Colors
 
-_Paintbrush_ supports unlimited levels of nesting, allowing you to use one color inside another color and have the text revert back to its previous color. This lets you create complex colorized strings without having to manually revert back manually.
+_Paintbrush_ supports unlimited levels of nesting, allowing you to use one color inside another color and have the text revert back to its previous color. This lets you create complex colorized strings without having to revert back manually.
 
 ```rspec:ansi
 subject do
