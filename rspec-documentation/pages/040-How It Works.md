@@ -66,11 +66,9 @@ This process is repeated recursively back up the tree until the root is found, a
 
 ## Summary
 
-The constraints of using string interpolation to create nested colorized strings made developing _Paintbrush_ quite an interesting challenge. Each invocation of a color method receives only the string passed directly to it, and the return value of each method must be an object that _Ruby_ can interpolate into another string, removing the option to pass around objects with complex state and forcing everything to be encoded into the string.
+_Paintbrush_ provides method resolution by modifying a duplicate of the current context, then creates a series of encoded strings with unlimited (within _Ruby's_ own stack size limit) nested string interpolation. The intermediary encoded string is parsed into a tree when the result is returned to the main `#paintbrush` method. The tree is then traversed from the leaf nodes to the root, re-encoding into a string of _ANSI_ color sequences that restore each node's parent color, providing developers with (hopefully) a more pleasant way of building colorized terminal output than they are used to.
 
-The strings received to each call can be stored elsewhere, but the final string structure must define all start and end points of each colorization so that the stack can match each substring to a color code. As each string is received, it does not know where in the final string it will appear.
-
-The result is what appears to be a robust model with unlimited nesting. Please [create an issue](https://github.com/bobf/paintbrush/issues) if you are able to break it.
+Here's the result:
 
 ```rspec:ansi
 subject do
@@ -81,3 +79,7 @@ end
 
 it { is_expected.to include 'baz' }
 ```
+
+Try some of the [alternatives](alternatives.html) to compare equivalent functionality across different implementations.
+
+Raise an [issue](https://github.com/bobf/paintbrush/issues) if you want to suggest a feature or report a bug.
