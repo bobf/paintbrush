@@ -5,7 +5,9 @@ module PaintbrushSupport
   # escaped string including the current stack size with start and end escape codes, allowing the
   # string to be reconstituted afterwards with nested strings restoring the previous color once
   # they have terminated.
-  module Colors
+  class Colors
+    attr_reader :stack
+
     COLOR_CODES = {
       black: '30',
       red: '31',
@@ -26,12 +28,16 @@ module PaintbrushSupport
       white_b: '97'
     }.freeze
 
+    def initialize
+      @stack = []
+    end
+
     HEX_CODE_REGEXP = /(?:hex_[a-fA-F0-9]{3}){1,2}/.freeze
 
     COLOR_CODES.each do |name, code|
       define_method name do |string|
         if Configuration.colorize?
-          ColorElement.new(stack: @__stack, code: code, string: string).to_s
+          ColorElement.new(stack: stack, code: code, string: string).to_s
         else
           string
         end
@@ -45,7 +51,7 @@ module PaintbrushSupport
       return unless Configuration.colorize?
 
       ColorElement.new(
-        stack: @__stack,
+        stack: stack,
         code: HexColorCode.new(hex_code: method_name).escape_sequence,
         string: args.first
       ).to_s

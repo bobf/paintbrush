@@ -34,7 +34,7 @@ module PaintbrushSupport
     end
 
     def bounded_color_elements
-      @bounded_color_elements ||= stack.map do |color_element|
+      @bounded_color_elements ||= colors.stack.map do |color_element|
         BoundedColorElement.new(color_element: color_element, escaped_output: escaped_output)
       end
     end
@@ -51,14 +51,18 @@ module PaintbrushSupport
     end
 
     def escaped_output
-      @escaped_output ||= context.instance_eval(&block)
+      @escaped_output ||= context(colors).instance_eval(&block)
     end
 
-    def context
-      eval('self', block.binding, __FILE__, __LINE__).dup.tap do |context|
-        context.send(:include, PaintbrushSupport::Colors) if context.respond_to?(:include)
-        context.send(:extend, PaintbrushSupport::Colors) if context.respond_to?(:extend)
-        context.send(:instance_variable_set, :@__stack, stack)
+    def colors
+      @colors ||= Colors.new
+    end
+
+    def context(colors = nil)
+      return @context if defined?(@context)
+
+      @context = eval('self', block.binding, __FILE__, __LINE__).tap do |context|
+        context.define_singleton_method(:method_missing) { |method_name, *args| colors.send(method_name, *args) }
       end
     end
   end
